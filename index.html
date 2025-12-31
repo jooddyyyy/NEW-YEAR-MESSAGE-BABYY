@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy New Year ♡</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 🌸 FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- 🎨 STYLE -->
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Baloo 2', cursive;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: url("images/cover.png") center/cover no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    #musicBtn {
+      position: fixed;
+      bottom: 18px;
+      left: 18px;
+      font-size: 1.4rem;
+      padding: 12px 14px;
+      border-radius: 50%;
+      border: none;
+      background: #ff9db3;
+      color: white;
+      cursor: pointer;
+      z-index: 20;
+    }
+
+    .card {
+      width: 90%;
+      max-width: 460px;
+      max-height: 80vh;
+      background: white;
+      border-radius: 32px;
+      padding: 26px;
+      text-align: center;
+      overflow-y: auto;
+      border: 4px dashed #ff9db3;
+      box-shadow: 0 0 0 6px #ffe3ea;
+      z-index: 5;
+    }
+
+    h1 {
+      color: #ff6f91;
+    }
+
+    p {
+      line-height: 1.6;
+      color: #444;
+      font-size: 1rem;
+    }
+
+    .btns {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    button {
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .pink { background: #ff9db3; color: white; }
+    .green { background: #7adfc2; color: white; }
+
+    img {
+      border-radius: 22px;
+      border: 4px solid #ffd1dc;
+    }
+
+    .hero-img {
+      width: 220px;
+      margin-bottom: 16px;
+    }
+
+    /* 🌟 FLOATING IMAGES */
+    .float {
+      position: fixed;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      opacity: 0.95;
+      z-index: 1;
+    }
+
+    .left { left: 6vw; }
+    .right { right: 6vw; }
+
+    .one { top: 10%; animation: float 6s infinite; }
+    .two { top: 60%; animation: float 7s infinite; }
+    .three { top: 14%; animation: float 5.5s infinite; }
+    .four { top: 64%; animation: float 8s infinite; }
+
+    @keyframes float {
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🎵 AUDIO -->
+  <audio id="bgMusic" loop>
+    <source src="images/bg-music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- FLOATING IMAGES -->
+  <img src="images/float1.png" class="float left one">
+  <img src="images/float2.png" class="float left two">
+  <img src="images/float3.png" class="float right three">
+  <img src="images/float4.png" class="float right four">
+
+  <!-- MUSIC BUTTON -->
+  <button id="musicBtn" onclick="toggleMusic()">🎵</button>
+
+  <!-- MAIN CARD -->
+  <div class="card" id="screen"></div>
+
+  <!-- 🧠 SCRIPT -->
+  <script>
+    const screen = document.getElementById("screen");
+    const bgMusic = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+
+    let isPlaying = false;
+
+    function toggleMusic() {
+      if (!isPlaying) {
+        bgMusic.play();
+        isPlaying = true;
+        musicBtn.innerText = "⏸";
+      } else {
+        bgMusic.pause();
+        isPlaying = false;
+        musicBtn.innerText = "🎵";
+      }
+    }
+
+    function screenAnniversary() {
+      screen.innerHTML = `
+        <img src="images/cute.png" class="hero-img">
+        <h1>Happy New Year ♡</h1>
+        <p>to the love of my life</p>
+        <div class="btns">
+          <button class="pink" onclick="screenEnvelope()">Open ♡</button>
+        </div>
+      `;
+    }
+
+    function screenEnvelope() {
+      screen.innerHTML = `
+        <img src="images/envelope.png" class="hero-img">
+        <h1>Ooo.. a message ♡</h1>
+        <p>Do you want to open it?</p>
+        <div class="btns">
+          <button class="pink" onclick="screenMessage()">Open it</button>
+          <button class="green" onclick="screenTryAgain()">No ty</button>
+        </div>
+      `;
+    }
+
+    function screenMessage() {
+      screen.innerHTML = `
+        <h1>Hi babyyy… ♡</h1>
+        <p>
+          Happy New Year, my love. 🤍<br><br>
+          Ever since I met a cutie patootie like you, my heart has quietly admired you from afar.
+          Sometimes I still ask myself how I got lucky enough to be loved by someone as kind,
+          patient, and genuine as you.<br><br>
+
+          Thank you for staying, choosing me, and loving me the way you do.
+          My heart is happiest when it’s with you.<br><br>
+
+          <strong>Happy New Year… always and forever, I LOVEEEE YOUUUU ❤️</strong>
+        </p>
+        <div class="btns">
+          <button class="pink" onclick="screenAnniversary()">Restart ♡</button>
+        </div>
+      `;
+    }
+
+    function screenTryAgain() {
+      screen.innerHTML = `
+        <img src="images/crying.png" class="hero-img">
+        <h1>Awh… try again please >_<</h1>
+        <div class="btns">
+          <button class="pink" onclick="screenEnvelope()">Again?</button>
+        </div>
+      `;
+    }
+
+    screenAnniversary();
+  </script>
+
+</body>
+</html>
